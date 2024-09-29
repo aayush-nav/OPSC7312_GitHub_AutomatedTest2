@@ -41,24 +41,31 @@ jobs:
           restore-keys: |
             gradle-${{ runner.os }}
 
+      - name: Kill Any Existing Emulator
+        run: |
+          adb devices | grep 'emulator' | while read -r line; do adb -s $(echo $line | awk '{print $1}') emu kill; done
+          adb kill-server
+
       - name: Install Emulator
         run: |
           sdkmanager "system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}"
           sdkmanager --licenses
 
       - name: Verify Emulator Installation
-        run: sdkmanager --list | grep 'system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}'
+        run: sdkmanager --list
 
       - name: Create and Start Emulator
         run: |
           avdmanager create avd -n test -k "system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}" -d "Nexus 6" --force
-          nohup emulator -avd test -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio &
+          nohup emulator -avd test -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio > emulator.log 2>&1 &
+          sleep 60
+          cat emulator.log
 
       - name: Wait for Emulator to Boot
         run: |
           boot_completed=false
           timeout=0
-          while [ "$boot_completed" != "1" ] && [ $timeout -lt 1200 ]; do
+          while [ "$boot_completed" != "1" ] && [ $timeout -lt 1800 ]; do
             boot_completed=$(adb -s emulator-5554 shell getprop sys.boot_completed | tr -d '\r')
             sleep 10
             timeout=$((timeout + 10))
@@ -83,5 +90,5 @@ jobs:
       - name: Test API Integration
         run: |
           curl -X GET "https://api.calorieninjas.com/" \
-          -H "Authorization: Bearer 24Dq75ydbIBCI6KpY2+BeQ==SJTYu7ebGCugjYj5" \
+          -H "Authorization: Bearer "24Dq75ydbIBCI6KpY2+BeQ==SJTYu7ebGCugjYj5" \
           -H "Content-Type: application/json"
