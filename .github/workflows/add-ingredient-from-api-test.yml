@@ -56,7 +56,7 @@ jobs:
       - name: Start Emulator and Capture Logs
         run: |
           nohup emulator -avd test -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -verbose > emulator_output.log 2>&1 &
-          sleep 120  # Extended wait time for the emulator to start
+          sleep 180  # Extended wait time for the emulator to start
         continue-on-error: true
 
       - name: Display Emulator Logs
@@ -76,7 +76,7 @@ jobs:
           echo "Waiting for emulator to boot..."
           boot_completed=false
           timeout=0
-          while [ "$boot_completed" != "1" ] && [ $timeout -lt 1800 ]; do
+          while [ "$boot_completed" != "1" ] && [ $timeout -lt 3600 ]; do  # Increased timeout
             boot_completed=$(adb -e shell getprop sys.boot_completed | tr -d '\r')
             echo "Boot status: $boot_completed. Time elapsed: $timeout seconds."
             sleep 10
