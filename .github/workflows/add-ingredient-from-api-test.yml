@@ -31,6 +31,9 @@ jobs:
       - name: Set up Emulator Path
         run: echo "PATH=$PATH:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools" >> $GITHUB_ENV
 
+      - name: Install Platform Tools
+        run: sdkmanager "platform-tools"
+
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
@@ -41,10 +44,10 @@ jobs:
           restore-keys: |
             gradle-${{ runner.os }}
 
-      - name: Kill Any Existing Emulator
+      - name: Force Kill ADB and Restart
         run: |
-          adb devices | grep 'emulator' | while read -r line; do adb -s $(echo $line | awk '{print $1}') emu kill; done
           adb kill-server
+          adb start-server
 
       - name: Install Emulator
         run: |
@@ -54,6 +57,9 @@ jobs:
       - name: Verify Emulator Installation
         run: sdkmanager --list
 
+      - name: List Available AVDs
+        run: emulator -list-avds
+
       - name: Create and Start Emulator
         run: |
           avdmanager create avd -n test -k "system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}" -d "Nexus 6" --force
@@ -61,12 +67,18 @@ jobs:
           sleep 60
           cat emulator.log
 
+      - name: Start ADB Server
+        run: adb start-server
+
+      - name: List ADB Devices
+        run: adb devices
+
       - name: Wait for Emulator to Boot
         run: |
           boot_completed=false
           timeout=0
           while [ "$boot_completed" != "1" ] && [ $timeout -lt 1800 ]; do
-            boot_completed=$(adb -s emulator-5554 shell getprop sys.boot_completed | tr -d '\r')
+            boot_completed=$(adb -e shell getprop sys.boot_completed | tr -d '\r')  # Use adb -e
             sleep 10
             timeout=$((timeout + 10))
           done
@@ -76,7 +88,7 @@ jobs:
           fi
 
       - name: Check Emulator Status
-        run: adb -s emulator-5554 shell getprop
+        run: adb -e shell getprop  # Use adb -e
 
       - name: Build with Gradle
         run: ./gradlew assembleDebug
@@ -85,7 +97,7 @@ jobs:
         run: ./gradlew connectedAndroidTest
 
       - name: Kill Emulator
-        run: adb -s emulator-5554 emu kill
+        run: adb -e emu kill  # Use adb -e
 
       - name: Test API Integration
         run: |
