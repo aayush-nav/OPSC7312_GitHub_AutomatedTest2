@@ -29,7 +29,7 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Set up Emulator Path
-        run: echo "PATH=$PATH:$HOME/Android/Sdk/emulator:$HOME/Android/Sdk/platform-tools" >> $GITHUB_ENV
+        run: echo "PATH=$PATH:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools" >> $GITHUB_ENV
 
       - name: Cache Gradle packages
         uses: actions/cache@v2
@@ -46,18 +46,30 @@ jobs:
           sdkmanager "system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}"
           sdkmanager --licenses
 
-      - name: List Installed Packages
-        run: sdkmanager --list
+      - name: Verify Emulator Installation
+        run: sdkmanager --list | grep 'system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}'
 
       - name: Create and Start Emulator
         run: |
           avdmanager create avd -n test -k "system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}" -d "Nexus 6" --force
-          nohup emulator -avd test -no-snapshot-save -no-window -no-audio &
+          nohup emulator -avd test -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio &
 
       - name: Wait for Emulator to Boot
         run: |
-          adb wait-for-device
-          adb shell 'while [[ "$(getprop sys.boot_completed)" != "1" ]]; do sleep 1; done'
+          boot_completed=false
+          timeout=0
+          while [ "$boot_completed" != "1" ] && [ $timeout -lt 1200 ]; do
+            boot_completed=$(adb -s emulator-5554 shell getprop sys.boot_completed | tr -d '\r')
+            sleep 10
+            timeout=$((timeout + 10))
+          done
+          if [ "$boot_completed" != "1" ]; then
+            echo "Emulator failed to boot in time"
+            exit 1
+          fi
+
+      - name: Check Emulator Status
+        run: adb -s emulator-5554 shell getprop
 
       - name: Build with Gradle
         run: ./gradlew assembleDebug
