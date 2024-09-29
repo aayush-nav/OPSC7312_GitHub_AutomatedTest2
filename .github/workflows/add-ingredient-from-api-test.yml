@@ -29,7 +29,7 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Install Required Dependencies
-        run: sudo apt-get update && sudo apt-get install -y libpulse0 libnss3 libxshmfence1 libglu1-mesa
+        run: sudo apt-get update && sudo apt-get install -y libpulse0 libnss3 libxshmfence1 libglu1-mesa telnet
 
       - name: Ensure Correct SDK Paths
         run: |
@@ -59,14 +59,22 @@ jobs:
       - name: Display Emulator Logs
         run: cat emulator_output.log
 
-      - name: Kill Existing ADB Server (if any)
-        run: adb kill-server
+      - name: Restart ADB Server and Ensure It's Running
+        run: |
+          adb kill-server
+          adb start-server
+          adb devices
+          adb devices -l  # List devices with more details
 
-      - name: Start ADB Server
-        run: adb start-server
+      - name: Try Connecting to Emulator Manually
+        run: |
+          adb connect localhost:5554 || echo "Failed to connect to emulator"
+          adb devices
 
-      - name: Check for Connected Devices
-        run: adb devices
+      - name: Telnet to Emulator for Connectivity Check
+        run: |
+          sleep 10
+          (echo "auth"; echo "avd status"; sleep 5; echo "exit") | telnet localhost 5554
 
       - name: Wait for Emulator to Boot
         run: |
@@ -98,5 +106,5 @@ jobs:
       - name: Test API Integration
         run: |
           curl -X GET "https://api.calorieninjas.com/" \
-          -H "Authorization: Bearer "24Dq75ydbIBCI6KpY2+BeQ==SJTYu7ebGCugjYj5" \
+          -H "Authorization: Bearer 24Dq75ydbIBCI6KpY2+BeQ==SJTYu7ebGCugjYj5" \
           -H "Content-Type: application/json"
