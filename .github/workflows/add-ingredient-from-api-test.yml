@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        api-level: [29, 30, 31] # Android API levels for testing
-        abi: [x86, x86_64]      # Emulator architectures
+        api-level: [29, 30, 31]  # Android API levels for testing
+        abi: [x86, x86_64]        # Emulator architectures
 
     steps:
       - name: Checkout
@@ -46,21 +46,12 @@ jobs:
       - name: Create and Start Emulator
         run: |
           avdmanager create avd -n test -k "system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}" -d "Nexus 6" --force
-          emulator -avd test -no-window -noaudio -no-boot-anim &
+          nohup emulator -avd test -no-snapshot-save -no-window -no-audio &
 
       - name: Wait for Emulator to Boot
         run: |
-          boot_completed=false
-          timeout=0
-          while [ "$boot_completed" != "1" ] && [ $timeout -lt 600 ]; do
-            boot_completed=$(adb -s emulator-5554 shell getprop sys.boot_completed | tr -d '\r')
-            sleep 10
-            timeout=$((timeout + 10))
-          done
-          if [ "$boot_completed" != "1" ]; then
-            echo "Emulator failed to boot in time"
-            exit 1
-          fi
+          adb wait-for-device
+          adb shell 'while [[ "$(getprop sys.boot_completed)" != "1" ]]; do sleep 1; done'
 
       - name: Build with Gradle
         run: ./gradlew assembleDebug
