@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SignUpStep1Activity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <ImageButton
+            android:id="@+id/signUpStep1BackBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/back_arrow"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/startUpScreen_VitaflexLogo_imageView"
+            android:layout_width="180sp"
+            android:layout_height="180sp"
+            android:layout_centerInParent="true"
+            app:shapeAppearanceOverlay="@style/roundedImageView"
+            app:srcCompat="@drawable/vitaflex_full_logo" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/goals_frame_orange">
+
+                    <TextView
+                        android:id="@+id/signUpStep1_step1of3_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:gravity="center"
+                        android:text="Step 1 of 3"
+                        android:textColor="#000000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/signUpStep1_tellUsAboutYourself_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center"
+                        android:text="Tell us about yourself"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="75dp"
+                            android:background="@drawable/goals_frame_white">
+
+                            <Spinner
+                                android:id="@+id/signUpStep1_genderSelect_Spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginRight="25dp"
+                                android:layout_marginBottom="25dp"
+                                android:background="@drawable/input_text_background"
+                                />
+
+                            <EditText
+                                android:id="@+id/signUpStep1_dateOfBirth_editText"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="80dp"
+                                android:layout_marginRight="25dp"
+                                android:background="@drawable/input_text_background"
+                                android:ems="10"
+                                android:hint="Date of Birth"
+                                android:inputType="date"
+                                />
+
+                            <Spinner
+                                android:id="@+id/signUpStep1_weightSelect_Spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="140dp"
+                                android:layout_marginRight="25dp"
+                                android:background="@drawable/input_text_background"
+                                />
+
+                            <Spinner
+                                android:id="@+id/signUpStep1_heightSelect_Spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="48dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="200dp"
+                                android:layout_marginRight="25dp"
+                                android:layout_marginBottom="25dp"
+                                android:background="@drawable/input_text_background"
+                                />
+
+                            <Button
+                                android:id="@+id/signUpStep1_continue_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="300dp"
+                                android:layout_marginRight="25dp"
+                                android:layout_marginBottom="25dp"
+                                android:backgroundTint="#F5883F"
+                                android:text="Continue"
+                                android:textSize="24sp" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>
+

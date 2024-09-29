@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SignUpStep3Activity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <ImageButton
+            android:id="@+id/signUpStep3BackBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/back_arrow"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/startUpScreen_VitaflexLogo_imageView"
+            android:layout_width="180sp"
+            android:layout_height="180sp"
+            android:layout_centerInParent="true"
+            app:shapeAppearanceOverlay="@style/roundedImageView"
+            app:srcCompat="@drawable/vitaflex_full_logo" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/goals_frame_orange">
+
+                    <TextView
+                        android:id="@+id/finalStepSignUp_finalStep_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:gravity="center"
+                        android:text="Final Step!"
+                        android:textColor="#000000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/finalStepSignUp_accountDetails_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center"
+                        android:text="Account Details"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="75dp"
+                            android:background="@drawable/goals_frame_white">
+
+                            <EditText
+                                android:id="@+id/fullNameStepSignUp_fullName_editText"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginRight="25dp"
+                                android:layout_marginBottom="10dp"
+                                android:background="@drawable/input_text_background"
+                                android:ems="10"
+                                android:hint="First name"
+                                android:inputType="text" />
+
+                            <EditText
+                                android:id="@+id/finalStepSignUp_email_editTextEmailAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="80dp"
+                                android:layout_marginRight="25dp"
+                                android:background="@drawable/input_text_background"
+                                android:ems="10"
+                                android:hint="Email"
+                                android:inputType="textEmailAddress" />
+
+                            <EditText
+                                android:id="@+id/finalStepSignUp_password_editTextPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="140dp"
+                                android:layout_marginRight="25dp"
+                                android:background="@drawable/input_text_background"
+                                android:ems="10"
+                                android:hint="Password"
+                                android:inputType="textPassword" />
+
+                            <EditText
+                                android:id="@+id/finalStepSignUp_confirmPassword_editTextPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="200dp"
+                                android:layout_marginRight="25dp"
+                                android:layout_marginBottom="25dp"
+                                android:background="@drawable/input_text_background"
+                                android:ems="10"
+                                android:hint="Confirm Password"
+                                android:inputType="textPassword" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <CheckBox
+                                    android:id="@+id/finalStepSignUp_agreeToTC_checkbox"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="25dp"
+                                    android:layout_marginTop="260dp"
+                                    android:layout_marginRight="25dp"
+                                    android:layout_marginBottom="25dp"
+                                    android:text="Agree to Ts and Cs" />
+
+                                <Button
+                                    android:id="@+id/finalStepSignUp_TandC_btn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="260dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:layout_marginBottom="25dp"
+                                    android:backgroundTint="#FFFFFF"
+                                    android:text="Terms and Conditions"
+                                    android:textColor="#2196F3" />
+                            </LinearLayout>
+
+                            <Button
+                                android:id="@+id/finalStepSignUp_signUp_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="330dp"
+                                android:layout_marginRight="25dp"
+                                android:layout_marginBottom="25dp"
+                                android:backgroundTint="#F5883F"
+                                android:text="Sign Up"
+                                android:textSize="24sp" />
+
+                            <TextView
+                                android:id="@+id/finalStepSignUp_or_textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="390dp"
+                                android:layout_marginRight="25dp"
+                                android:layout_marginBottom="25dp"
+                                android:text="OR"
+                                android:textAlignment="center"
+                                android:textSize="20sp" />
+
+                            <ImageButton
+                                android:id="@+id/finalStepSignUp_signInWithGoogle_imageButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="75dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginTop="420dp"
+                                android:layout_marginRight="25dp"
+                                android:layout_marginBottom="25dp"
+                                android:backgroundTint="#FFFFFF"
+                                android:scaleType="fitCenter"
+                                app:srcCompat="@drawable/google_sign_up_logo" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

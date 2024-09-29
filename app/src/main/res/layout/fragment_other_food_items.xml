@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/main"
+    tools:context=".OtherFoodItemsFragment">
+
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search Other Food Item:"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Search Item"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/input_text_background"/>
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Search"
+            android:backgroundTint="#9AF0B1"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/nutrition_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="30dp"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/add_ingredient_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Add Item"
+            android:backgroundTint="#F5883F"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:enabled="false"/>
+    </LinearLayout>
+</ScrollView>
+
+
+
+</LinearLayout>

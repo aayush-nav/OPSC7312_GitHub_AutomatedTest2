@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AboutActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#F5883F"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/about_back_btn"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="@drawable/back_arrow"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/about_heading_textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:text="About"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            tools:ignore="RtlCompat" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:ignore="ExtraText">
+
+                <TextView
+                    android:id="@+id/about_aboutUsHeading_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="25dp"
+                    android:text="About Us:"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/about_aboutUsInfo_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@drawable/input_text_background_1"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:text="Welcome to our Fitness and Diet Tracking app, your personal health companion designed to help you stay on track with your wellness goals. Whether you're looking to lose weight, maintain your current lifestyle, or gain muscle, our app provides the tools and insights you need to succeed."
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/about_ourMissionHeading_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:text="Our Mission:"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/about_ourMissionInfo_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@drawable/input_text_background_1"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:text="At The A-Team, our mission is to empower individuals to take control of their health and well-being through an easy-to-use platform that combines fitness tracking, nutritional insights, and community support. We believe in providing users with the right data and resources to make informed decisions about their diet and exercise routines, all while keeping the experience enjoyable and motivating." />
+
+                <TextView
+                    android:id="@+id/about_whatWeOfferHeading_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:text="What we Offer:"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/about_whatWeOfferInfo_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@drawable/input_text_background_1"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:text="Create, save, and track custom recipes and food plans tailored to your personal goals. Set your fitness and diet goals, track your progress, and make adjustments as needed with data-driven insights. Seamless Logging: Quickly log your food intake and workouts to stay on track with your diet and fitness goals and a comprehensive database of nutritional information. Progress Tracking: Visualize your journey with detailed progress reports that monitor your weight, calorie intake, exercise performance, and more." />
+
+                <TextView
+                    android:id="@+id/about_meetTheATeamHeading_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:text="Meet the A-Team:"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/about_meetTheATeamInfo_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/input_text_background_1"
+                    android:padding="5dp"
+                    android:text="We are The A-Team, a dedicated group of developers and fitness enthusiasts who believe in combining technology with healthy living. Our goal is to make it easier for you to lead a healthier lifestyle, no matter where you are on your fitness journey.Each of us brings a unique set of skills to the table, from app design to user experience and backend development, but together, we share one common goal: to build a tool that makes achieving your health goals easier and more fun. Thank you for choosing our app to support your fitness journey. We’re constantly evolving and improving, so stay tuned for exciting updates, new features, and more!" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

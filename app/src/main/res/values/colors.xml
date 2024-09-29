@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="app_orange">#F4A261</color>
+
+    <color name="meals_pink">#EEB5B5</color>
+    <color name="progress_orange">#F0B49A</color>
+    <color name="recipes_green">#9AF0B1</color>
+    <color name="workout_blue">#ABEDF2</color>
+
+
+    <color name="header_orange">#F5883F</color>
+
+
+
+
+</resources>

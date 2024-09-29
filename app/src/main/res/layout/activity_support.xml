@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SupportActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#F5883F"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/support_back_btn"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="@drawable/back_arrow"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/support_heading_textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:text="Support"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            tools:ignore="RtlCompat" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:ignore="ExtraText">
+
+                <TextView
+                    android:id="@+id/support_introductionHeading_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="25dp"
+                    android:text="Introduction:"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/support_introductionInfo_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@drawable/input_text_background_1"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:text="Welcome to our Fitness and Diet Tracking application. These Terms and Conditions govern your use of the App, which is provided by The A-Team (referred to as 'we,' 'us,' or 'our'). By downloading, accessing, or using the App, you agree to comply with these terms. If you do not agree to these terms, please do not use the App."
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/support_appOverviewHeading_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:text="App Overview:"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/support_appOverviewInfo_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@drawable/input_text_background_1"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:text="The App is designed to help users track their fitness and dietary goals. It is a free-to-use service available on the Google Play Store, with no purchase necessary. The App leverages Firebase as its database to store user data and uses the CalorieNinja API to provide nutritional information." />
+
+                <TextView
+                    android:id="@+id/support_userAccountsHeading_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:text="User Accounts:"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/support_userAccountsInfo_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@drawable/input_text_background_1"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:text="You will need to create an account to access all features of the App. When creating an account, you agree to provide accurate, current and complete information, keep your account credentials confidential and secure, notify us immediately if you believe there has been unauthorised use of your account. We are not responsible for any loss or damage arising from unauthorised access to your account." />
+
+                <TextView
+                    android:id="@+id/support_useOfAppHeading_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:text="Use of the App:"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/support_useOfAppInfo_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="25dp"
+                    android:textColor="@color/black"
+                    android:background="@drawable/input_text_background_1"
+                    android:padding="5dp"
+                    android:text="By using this App, you agree to use the App for personal, non-commercial purposes, not engage in any illegal, fraudulent, or harmful activities while using the App, respect the privacy and rights of other users and not use any automated means to extract data from the App." />
+
+                <TextView
+                    android:id="@+id/support_dataCollectionHeading_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:textColor="@color/black"
+                    android:text="Data Collection and Privacy:"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/support_dataCollectionInfo_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/input_text_background_1"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:text="We value your privacy. All personal data collected via the App is stored securely in Firebase and is handled in accordance with our Privacy Policy. By using the App, you agree that your personal data, including but not limited to name, email, and fitness-related data, will be stored and processed by Firebase. We may use aggregated, anonymized data for research and development to improve the App’s services." />
+
+                <TextView
+                    android:id="@+id/support_calorieNinjaHeading_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:textColor="@color/black"
+                    android:layout_marginEnd="25dp"
+                    android:text="CalorieNinja API:"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/support_calorieNinjaInfo_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/input_text_background_1"
+                    android:padding="5dp"
+                    android:text="Our App integrates with the CalorieNinja API to provide nutritional information about food items. By using the App, you acknowledge and agree that the accuracy of food data and calorie counts depends on the information provided by the CalorieNinja API. We are not responsible for any errors, omissions, or inaccuracies in the nutritional data provided by CalorieNinja. You should not rely solely on the information provided by the App for medical, dietary, or health-related decisions." />
+
+                <TextView
+                    android:id="@+id/support_limitOfLiabilityHeading_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:textColor="@color/black"
+                    android:text="Limitation of Liability:"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/support_limitOfLiabilityInfo_textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginBottom="25dp"
+                    android:textColor="@color/black"
+                    android:background="@drawable/input_text_background_1"
+                    android:padding="5dp"
+                    android:text="We strive to provide accurate and up-to-date information, but we do not guarantee the accuracy or reliability of the App’s content. To the fullest extent permitted by law, we disclaim all warranties, express or implied, regarding the App and its content. We are not liable for any direct, indirect, incidental, or consequential damages resulting from your use of the App, including but not limited to health-related issues arising from reliance on nutritional information." />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

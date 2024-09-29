@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListOfIngredientsActivity"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#F5883F"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!--        <ImageButton-->
+        <!--            android:id="@+id/listOfAllIngredients_back_Button"-->
+        <!--            android:layout_width="65dp"-->
+        <!--            android:layout_height="65dp"-->
+        <!--            android:background="@drawable/back_arrow" -->
+        <!--            -->
+        <!--            />-->
+
+        <TextView
+            android:id="@+id/listOfAllRecipes_heading_textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
+            android:text="List Of Ingredients"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="28sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="16dp"
+        android:orientation="vertical"
+        >
+
+        <Button
+            android:id="@+id/addMoreIngredientsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ Add More Ingredients"
+            android:layout_gravity="center"
+            android:backgroundTint="#9AF0B1"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ingredientsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            />
+
+        <TextView
+            android:id="@+id/totalCaloriesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Calories: 0"
+            android:layout_gravity="right"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            />
+
+
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continue >"
+            android:layout_gravity="right"
+            android:backgroundTint="#F5883F"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="30dp"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>
