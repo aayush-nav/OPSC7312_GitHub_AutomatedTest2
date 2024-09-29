@@ -56,20 +56,11 @@ jobs:
       - name: Start Emulator and Capture Logs
         run: |
           nohup emulator -avd test -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -verbose > emulator_output.log 2>&1 &
-          sleep 180  # Extended wait time for the emulator to start
+          sleep 240  # Extended wait time for the emulator to start
         continue-on-error: true
 
       - name: Display Emulator Logs
         run: cat emulator_output.log
-
-      - name: Restart ADB Server and Ensure It's Running
-        run: |
-          echo "Killing any existing ADB server..."
-          adb kill-server || echo "ADB server not running"
-          echo "Starting ADB server..."
-          adb start-server
-          sleep 5  # Give ADB some time to start and detect devices
-          adb devices
 
       - name: Wait for Emulator to Boot with Better Logging
         run: |
@@ -77,16 +68,21 @@ jobs:
           boot_completed=false
           timeout=0
           while [ "$boot_completed" != "1" ] && [ $timeout -lt 3600 ]; do  # Increased timeout
-            boot_completed=$(adb -e shell getprop sys.boot_completed | tr -d '\r')
-            echo "Boot status: $boot_completed. Time elapsed: $timeout seconds."
+            boot_completed=$(adb devices | grep emulator | awk '{print $1}')
+            if [ -z "$boot_completed" ]; then
+              echo "No emulator found. Waiting for emulator to start..."
+            else
+              boot_completed=$(adb -s "$boot_completed" shell getprop sys.boot_completed | tr -d '\r')
+              echo "Boot status: $boot_completed. Time elapsed: $timeout seconds."
+            fi
             sleep 10
             timeout=$((timeout + 10))
-            adb devices
           done
           if [ "$boot_completed" != "1" ]; then
             echo "Emulator failed to boot in time"
             exit 1
           fi
+
 
       - name: Check Emulator Status
         run: adb -e shell getprop
