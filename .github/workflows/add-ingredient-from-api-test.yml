@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        api-level: [29, 30, 31]  # Android API levels for testing
+        api-level: [29, 30]  # Remove 31 if it's not available
         abi: [x86, x86_64]        # Emulator architectures
 
     steps:
