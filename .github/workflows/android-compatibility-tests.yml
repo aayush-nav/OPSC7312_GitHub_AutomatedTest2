@@ -13,30 +13,26 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        api-level: [29, 30, 31] # Android API levels (you can add more)
+        api-level: [29, 30, 31] # Android API levels
         abi: [x86, x86_64] # Emulator architectures
-        device: [Nexus 6, Pixel 4] # Device models for different screen sizes
+        device: [Nexus 6] # Only testing on Nexus 6
 
     steps:
-      # Checkout the code
+      # Step 1: Checkout the repository code
       - name: Checkout
         uses: actions/checkout@v2
 
-      # Set up JDK (Java 11 or 17 depending on the requirement of your project)
+      # Step 2: Set up Java Development Kit (JDK)
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
           java-version: 11
 
-      # Set up Android SDK
+      # Step 3: Set up Android SDK
       - name: Set up Android SDK
         uses: android-actions/setup-android@v2
 
-      # Set up Gradle
-      - name: Set up Gradle
-        uses: gradle/gradle-build-action@v2
-
-      # Cache Gradle dependencies to speed up the build
+      # Step 4: Cache Gradle dependencies
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
@@ -47,30 +43,30 @@ jobs:
           restore-keys: |
             gradle-${{ runner.os }}
 
-      # Install the Android emulator for the specified API level and ABI
-      - name: Install emulator
+      # Step 5: Install Android Emulator system images for the specified API level and ABI
+      - name: Install Emulator
         run: |
           sdkmanager "system-images;android-${{ matrix.api-level }};default;${{ matrix.abi }}"
           sdkmanager --licenses
 
-      # Create and start the emulator
+      # Step 6: Create and start the emulator with Nexus 6
       - name: Create and Start Emulator
         run: |
           avdmanager create avd -n test -k "system-images;android-${{ matrix.api-level }};default;${{ matrix.abi }}" -d "${{ matrix.device }}" --force
-          emulator -avd test -no-snapshot-save -no-window -noaudio &
+          emulator -avd test -no-window -noaudio &
 
-      # Wait for the emulator to fully start
-      - name: Wait for emulator to boot
+      # Step 7: Wait for the emulator to boot completely
+      - name: Wait for Emulator to Boot
         run: adb wait-for-device shell getprop init.svc.bootanim | grep stopped
 
-      # Build the app using Gradle
+      # Step 8: Build the app with Gradle
       - name: Build with Gradle
         run: ./gradlew assembleDebug
 
-      # Run your instrumented tests (UI tests)
-      - name: Run tests
+      # Step 9: Run Android instrumented (UI) tests on the emulator
+      - name: Run Tests
         run: ./gradlew connectedAndroidTest
 
-      # Stop the emulator after tests
-      - name: Kill emulator
+      # Step 10: Kill the emulator after tests
+      - name: Kill Emulator
         run: adb -s emulator-5554 emu kill
