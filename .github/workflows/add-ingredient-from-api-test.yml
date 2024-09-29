@@ -46,12 +46,17 @@ jobs:
           sdkmanager --list
           emulator -version
 
-      - name: Create and Start Emulator
+      - name: Create Emulator Device
         run: |
           avdmanager create avd -n test -k "system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}" -d "Nexus 6" --force
-          nohup emulator -avd test -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio > emulator.log 2>&1 &
-          sleep 120
-          cat emulator.log
+
+      - name: Start Emulator in Foreground
+        run: |
+          emulator -avd test -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio &
+          sleep 180  # Increase waiting time to allow emulator to fully boot up
+
+      - name: Check Emulator Devices
+        run: adb devices
 
       - name: Wait for Emulator to Boot
         run: |
@@ -61,14 +66,12 @@ jobs:
             boot_completed=$(adb -e shell getprop sys.boot_completed | tr -d '\r')
             sleep 10
             timeout=$((timeout + 10))
+            adb devices
           done
           if [ "$boot_completed" != "1" ]; then
             echo "Emulator failed to boot in time"
             exit 1
           fi
-
-      - name: List ADB Devices
-        run: adb devices
 
       - name: Check Emulator Status
         run: adb -e shell getprop
