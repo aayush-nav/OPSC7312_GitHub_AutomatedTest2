@@ -29,7 +29,10 @@ jobs:
         uses: android-actions/setup-android@v2
 
       - name: Install Required Dependencies
-        run: sudo apt-get update && sudo apt-get install -y libpulse0 libnss3 libxshmfence1 libglu1-mesa telnet
+        run: |
+          sudo apt-get update && sudo apt-get install -y \
+          libpulse0 libnss3 libxshmfence1 libglu1-mesa telnet \
+          lib32z1 lib32ncurses5 lib32stdc++6
 
       - name: Ensure Correct SDK Paths
         run: |
@@ -53,7 +56,7 @@ jobs:
       - name: Start Emulator and Capture Logs
         run: |
           emulator -avd test -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -verbose > emulator_output.log 2>&1 &
-          sleep 60
+          sleep 120  # Extended wait time for the emulator to start
         continue-on-error: true
 
       - name: Display Emulator Logs
@@ -65,14 +68,7 @@ jobs:
           adb kill-server || echo "ADB server not running"
           echo "Starting ADB server..."
           adb start-server
-          adb devices -l  # List devices with more details
-          sleep 10  # Give ADB some time to start and detect devices
-
-      - name: Check ADB Status and Manually Connect to Emulator
-        run: |
-          echo "Checking connected devices..."
-          adb devices
-          adb connect localhost:5554 || echo "Failed to connect to emulator"
+          sleep 5  # Give ADB some time to start and detect devices
           adb devices
 
       - name: Wait for Emulator to Boot with Better Logging
