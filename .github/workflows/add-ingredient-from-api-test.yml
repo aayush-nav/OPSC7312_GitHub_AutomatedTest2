@@ -28,6 +28,9 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v2
 
+      - name: Install Required Dependencies
+        run: sudo apt-get update && sudo apt-get install -y libpulse0 libnss3 libxshmfence1 libglu1-mesa
+
       - name: Ensure Correct SDK Paths
         run: |
           echo "PATH=$PATH:$ANDROID_SDK_ROOT/emulator:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/tools/bin" >> $GITHUB_ENV
