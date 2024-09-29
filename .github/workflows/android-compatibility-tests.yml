@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         api-level: [29, 30, 31] # Android API levels
-        abi: [x86, x86_64] # Emulator architectures
+        abi: [x86, x86_64] # Emulator architectures (use x86_64 for API 31)
         device: [Nexus 6] # Only testing on Nexus 6
 
     steps:
@@ -43,16 +43,24 @@ jobs:
           restore-keys: |
             gradle-${{ runner.os }}
 
-      # Step 5: Install Android Emulator system images (Google APIs instead of default)
+      # Step 5: Install Android Emulator system images (API 31 uses x86_64)
       - name: Install Emulator
         run: |
-          sdkmanager "system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}"
+          if [ "${{ matrix.api-level }}" == "31" ]; then
+            sdkmanager "system-images;android-31;google_apis;x86_64"
+          else
+            sdkmanager "system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}"
+          fi
           sdkmanager --licenses
 
       # Step 6: Create and start the emulator with Nexus 6
       - name: Create and Start Emulator
         run: |
-          avdmanager create avd -n test -k "system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}" -d "${{ matrix.device }}" --force
+          if [ "${{ matrix.api-level }}" == "31" ]; then
+            avdmanager create avd -n test -k "system-images;android-31;google_apis;x86_64" -d "${{ matrix.device }}" --force
+          else
+            avdmanager create avd -n test -k "system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}" -d "${{ matrix.device }}" --force
+          fi
           emulator -avd test -no-window -noaudio &
 
       # Step 7: Wait for the emulator to boot completely
