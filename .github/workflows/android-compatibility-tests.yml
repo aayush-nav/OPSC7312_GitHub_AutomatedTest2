@@ -43,16 +43,16 @@ jobs:
           restore-keys: |
             gradle-${{ runner.os }}
 
-      # Step 5: Install Android Emulator system images for the specified API level and ABI
+      # Step 5: Install Android Emulator system images (Google APIs instead of default)
       - name: Install Emulator
         run: |
-          sdkmanager "system-images;android-${{ matrix.api-level }};default;${{ matrix.abi }}"
+          sdkmanager "system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}"
           sdkmanager --licenses
 
       # Step 6: Create and start the emulator with Nexus 6
       - name: Create and Start Emulator
         run: |
-          avdmanager create avd -n test -k "system-images;android-${{ matrix.api-level }};default;${{ matrix.abi }}" -d "${{ matrix.device }}" --force
+          avdmanager create avd -n test -k "system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}" -d "${{ matrix.device }}" --force
           emulator -avd test -no-window -noaudio &
 
       # Step 7: Wait for the emulator to boot completely
