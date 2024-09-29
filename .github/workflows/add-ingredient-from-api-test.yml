@@ -50,12 +50,22 @@ jobs:
         run: |
           avdmanager create avd -n test -k "system-images;android-${{ matrix.api-level }};google_apis;${{ matrix.abi }}" -d "Nexus 6" --force
 
-      - name: Start Emulator in Foreground
+      - name: Start Emulator and Capture Logs
         run: |
-          emulator -avd test -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio &
-          sleep 180  # Increase waiting time to allow emulator to fully boot up
+          emulator -avd test -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -verbose > emulator_output.log 2>&1 &
+          sleep 60
+        continue-on-error: true
 
-      - name: Check Emulator Devices
+      - name: Display Emulator Logs
+        run: cat emulator_output.log
+
+      - name: Kill Existing ADB Server (if any)
+        run: adb kill-server
+
+      - name: Start ADB Server
+        run: adb start-server
+
+      - name: Check for Connected Devices
         run: adb devices
 
       - name: Wait for Emulator to Boot
