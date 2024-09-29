@@ -55,7 +55,7 @@ jobs:
 
       - name: Start Emulator and Capture Logs
         run: |
-          emulator -avd test -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -verbose > emulator_output.log 2>&1 &
+          nohup emulator -avd test -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -verbose > emulator_output.log 2>&1 &
           sleep 120  # Extended wait time for the emulator to start
         continue-on-error: true
 
