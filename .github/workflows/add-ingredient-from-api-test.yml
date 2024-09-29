@@ -61,27 +61,28 @@ jobs:
 
       - name: Restart ADB Server and Ensure It's Running
         run: |
-          adb kill-server
+          echo "Killing any existing ADB server..."
+          adb kill-server || echo "ADB server not running"
+          echo "Starting ADB server..."
           adb start-server
-          adb devices
           adb devices -l  # List devices with more details
+          sleep 10  # Give ADB some time to start and detect devices
 
-      - name: Try Connecting to Emulator Manually
+      - name: Check ADB Status and Manually Connect to Emulator
         run: |
+          echo "Checking connected devices..."
+          adb devices
           adb connect localhost:5554 || echo "Failed to connect to emulator"
           adb devices
 
-      - name: Telnet to Emulator for Connectivity Check
+      - name: Wait for Emulator to Boot with Better Logging
         run: |
-          sleep 10
-          (echo "auth"; echo "avd status"; sleep 5; echo "exit") | telnet localhost 5554
-
-      - name: Wait for Emulator to Boot
-        run: |
+          echo "Waiting for emulator to boot..."
           boot_completed=false
           timeout=0
           while [ "$boot_completed" != "1" ] && [ $timeout -lt 1800 ]; do
             boot_completed=$(adb -e shell getprop sys.boot_completed | tr -d '\r')
+            echo "Boot status: $boot_completed. Time elapsed: $timeout seconds."
             sleep 10
             timeout=$((timeout + 10))
             adb devices
