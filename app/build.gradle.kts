@@ -69,6 +69,14 @@ dependencies {
     implementation ("com.google.android.material:material:1.9.0")
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
     implementation(libs.androidx.swiperefreshlayout)
+    // Unit testing dependencies
+    testImplementation ("junit:junit:4.13.2")
+
+    // MockWebServer for mocking API responses
+    testImplementation ("com.squareup.okhttp3:mockwebserver:4.9.3")
+
+    // Coroutines for testing (if using coroutines)
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
