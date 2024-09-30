@@ -19,7 +19,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiServiceTest2 {
 
-
     private lateinit var mockWebServer: MockWebServer
     private lateinit var apiService: ApiService
 
