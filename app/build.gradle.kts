@@ -78,6 +78,12 @@ dependencies {
     // Coroutines for testing (if using coroutines)
     testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2")
 
+    // Unit Testing
+    testImplementation ("org.mockito:mockito-core:3.11.2")
+    testImplementation ("org.mockito:mockito-inline:3.11.2")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
